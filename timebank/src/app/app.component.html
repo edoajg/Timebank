@@ -1,0 +1,71 @@
+<div class="navigation col-lg-12 shadow-lg">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a [routerLink]="['/home']" class="navbar-brand">{{title}}</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto" *ngIf="identity.name">
+        <li class="nav-item menulink">
+          <a [routerLink]="['/home']" [routerLinkActive]="['active']" class="nav-link ">
+            <fa-icon [icon]="faHome"></fa-icon>
+            Inicio
+          </a>
+        </li>
+        <li class="nav-item menulink">
+          <a [routerLink]="['/timeline']" [routerLinkActive]="['active']" class="nav-link">
+            <fa-icon [icon]="faList"></fa-icon>
+            Timeline
+          </a>
+        </li>
+        <li class="nav-item menulink">
+          <a [routerLink]="['/gente']" [routerLinkActive]="['active']" class="nav-link">
+            <fa-icon [icon]="faUsers"></fa-icon>
+            Gente
+          </a>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto" *ngIf="!identity.name">
+        <li class="nav-item menulink">
+          <a [routerLink]="['/login']" [routerLinkActive]="['active']" class="nav-link">
+            <fa-icon [icon]="faUsers"></fa-icon>
+            Login
+          </a>
+        </li>
+        <li class="nav-item menulink">
+          <a [routerLink]="['/registro']" [routerLinkActive]="['active']" class="nav-link">
+            <fa-icon [icon]="faUsers"></fa-icon>
+            Registro
+          </a>
+        </li>
+      </ul>
+      <ul class="nav navbar navbar-nav " *ngIf="identity.name">
+        <li class="avatar">
+          <!--- cargar imagen de usuario --->
+          <img src="{{ url + 'get-image-user/' + identity.image}}" *ngIf="identity && identity.image" />
+        </li>
+        <li class="nav-item  menulink dropdown ">
+          <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">
+          {{identity.name}} <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li >
+              <a class="dropdown-item" href="#">
+                Mi perfil
+              </a>
+            </li>
+            <li >
+              <a class="dropdown-item" [routerLink]="'/mis-datos'">
+                Mis datos
+              </a>
+            </li>
+            <li >
+              <a class="dropdown-item pointer" (click)="logout()">
+                Cerrar sesion
+              </a>
+            </li>
+          </ul>
+        </li>
+        </ul>
+      </div>
+  </nav>
+</div>
+
+<router-outlet></router-outlet>

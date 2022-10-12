@@ -1,0 +1,42 @@
+<div class="col-lg-8 float-left">
+  <h1 class="h1-strong">{{title}}</h1>
+  <div id="publications">
+    <div *ngFor="let publication of publications" class="item-publication">
+      <div class="card">
+        <div class="card-body">
+        <div class="image_user" >
+          <a href="#">
+            <img src="{{ url + 'get-image-user/' + publication.user.image }}" *ngIf="publication.user.image" />
+            <img src="assets/ninja.png" class="avatar-default" *ngIf="!publication.user.image" />
+          </a>
+        </div>
+        <div class="d-flex flex-column">
+
+        <div>
+          <span class="user-name">
+            {{ publication.user.name + ' ' + publication.user.surname }}
+          </span>
+          &nbsp;|&nbsp;
+          <span class="date">
+            {{ (publication.created_at | amFromUnix)| amLocale: 'es'| amTimeAgo }}
+          </span>
+        </div>
+          <h4 class="publication-text float-left">
+            {{publication.text}}
+          </h4>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-12 text-center">
+    <p>
+  <button class=" btn btn-success" (click)="viewMore()" *ngIf="!noMore">
+    Ver mas Publicaciones
+  </button>
+  </p>
+  </div>
+</div>
+
+<sidebar></sidebar>
+<div class="clearfix"></div>
