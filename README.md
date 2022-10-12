@@ -1,3 +1,3 @@
 # timebank
 
-Reciprocy based working platform.
+Reciprocy based work trading platform.
